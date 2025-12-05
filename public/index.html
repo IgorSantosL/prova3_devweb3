@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas - FATEC</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <h1>Restaurante Hammigor</h1>
+        <p>Sistema de Gerenciamento de Mesas</p>
+    </header>
+
+    <main>
+        <section class="mapa-section">
+            <div class="header-section">
+                <h2><i class="material-icons">restaurant</i> Mapa do Salão</h2>
+                <div class="filtros"> <span class="badge verde">Disponível</span>
+                    <span class="badge amarelo">Reservado</span>
+                    <span class="badge vermelho">Ocupado</span>
+                </div>
+            </div>
+            
+            <div id="mapa-mesas" class="grid-mesas">
+                </div>
+        </section>
+
+        <section class="lista-section">
+            <div class="header-section">
+                <h2><i class="material-icons">list_alt</i> Reservas Ativas</h2>
+                <div class="filtros">
+                    <select id="filtroStatus">
+                        <option value="">Todos Status</option>
+                        <option value="reservado">Reservado</option>
+                        <option value="ocupado">Ocupado</option>
+                        <option value="finalizado">Finalizado</option>
+                    </select>
+                    <input type="date" id="filtroData">
+                    <button onclick="carregarDados()" class="btn-primary">
+                        <i class="material-icons" style="font-size:18px">search</i> Buscar
+                    </button>
+                </div>
+            </div>
+
+            <div class="tabela-container">
+                <table id="tabela-reservas">
+                    <thead>
+                        <tr>
+                            <th>Mesa</th>
+                            <th>Cliente</th>
+                            <th>Data/Hora</th>
+                            <th>Pessoas</th>
+                            <th style="text-align:center">Status</th>
+                            <th style="text-align:center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer id="secret-footer">
+    &copy; 2025 Hammes e Igor LTDA
+    </footer>
+
+    <div id="modalReserva" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2 id="modalTitulo">Nova Reserva</h2>
+            
+            <form id="form-reserva">
+                <input type="hidden" id="reservaId">
+                
+                <div class="campo">
+                    <label>Mesa Selecionada</label>
+                    <select id="mesaSelect" required></select>
+                </div>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Nome do Cliente</label>
+                        <input type="text" id="nome" required placeholder="Ex: João da Silva">
+                    </div>
+                    <div class="campo">
+                        <label>Contato</label>
+                        <input type="text" id="contato" required placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+
+                <div class="campo-duplo">
+                    <div class="campo">
+                        <label>Qtd. Pessoas</label>
+                        <input type="number" id="qtd" min="1" required>
+                    </div>
+                    <div class="campo">
+                        <label>Data e Hora</label>
+                        <input type="datetime-local" id="dataHora" required>
+                    </div>
+                </div>
+
+                <div class="acoes-modal">
+                    <button type="button" onclick="fecharModal()" class="btn-sec">Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar Reserva</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
